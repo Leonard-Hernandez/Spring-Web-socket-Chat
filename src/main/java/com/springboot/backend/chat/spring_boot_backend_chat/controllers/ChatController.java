@@ -16,7 +16,9 @@ public class ChatController {
     public Mensaje recibirMensaje(Mensaje mensaje) {
 
         mensaje.setFecha(new Date().getTime());
-        mensaje.setTexto("Recibido por el Broker " + mensaje.getTexto());
+        mensaje.setText("Recibido por el Broker " + mensaje.getText());
+
+        System.out.println(mensaje.getText() + " " + mensaje.getFecha().toString());
         
         return mensaje;
 

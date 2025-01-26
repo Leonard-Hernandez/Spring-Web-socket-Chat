@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Mensaje implements Serializable {
 
-    private String texto;
+    private String text;
 
     private Long fecha;
 
-    public String getTexto() {
-        return texto;
+    public String getText() {
+        return text;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Long getFecha() {
