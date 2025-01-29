@@ -23,7 +23,7 @@ public class ChatController {
 
         mensaje.setFecha(new Date().getTime());
         if(mensaje.getType().equals(TypeMessage.NEW_USER)){
-            mensaje.setText("Bienvenido " + mensaje.getUsername());
+            mensaje.setText("Bienvenido ");
             mensaje.setColor(colors[new Random().nextInt(colors.length)]);
         }
 
