@@ -1,11 +1,13 @@
 package com.springboot.backend.chat.spring_boot_backend_chat.controllers;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.springboot.backend.chat.spring_boot_backend_chat.models.documents.Mensaje;
@@ -17,6 +19,9 @@ public class ChatController {
 
     @Autowired
     private ChatService chatService;
+
+    @Autowired
+    private SimpMessagingTemplate webSocketTemplate;
 
     @MessageMapping("/mensaje")
     @SendTo("/chat/mensaje")
@@ -44,6 +49,11 @@ public class ChatController {
     @SendTo("/chat/escribiendo")
     public String escribiendo(String username) {
         return username + " esta escribiendo...";
+    }
+
+    @MessageMapping("/historia")
+    public void historial(String clienteId){
+        webSocketTemplate.convertAndSend("/chat/historial/"+clienteId, chatService.obtenerUltimos10Mensajes());
     }
 
 }
